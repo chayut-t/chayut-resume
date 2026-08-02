@@ -19,6 +19,7 @@ Applied Scientist with 6+ years of experience building and deploying production 
 - Researched architectural changes for improving quality in FP4-quantized LLMs.
 - Investigated sparse attention techniques for Amazon Nova models to reduce time-to-first-token and improve generation throughput in long-context inference.
 - Evaluated token-tree-based speculative decoding methods for Nova models as an alternative to linear-chain decoding.
+- Conducted data ablation studies for speech-to-speech model pretraining, informing data selection and mixture composition.
 
 ### 12/20-1/22 | Krungthai Bank, Thailand — Senior Data Engineer
 
