@@ -1,0 +1,10 @@
+# Original resume with private contact info — never commit
+legacy/
+
+# Build outputs
+dist/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
