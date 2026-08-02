@@ -1,6 +1,9 @@
 # Original resume with private contact info — never commit
 legacy/
 
+# Private PII scan patterns for scripts/check_pii.sh — never commit
+.pii-patterns
+
 # Build outputs
 dist/
 
