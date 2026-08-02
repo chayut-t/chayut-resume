@@ -18,9 +18,11 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import (
+    BaseDocTemplate,
+    Frame,
     HRFlowable,
+    PageTemplate,
     Paragraph,
-    SimpleDocTemplate,
     Spacer,
     Table,
     TableStyle,
@@ -112,16 +114,26 @@ def section_flowables(section: Section) -> list:
 
 
 def build(resume: Resume, out_path: Path) -> None:
-    doc = SimpleDocTemplate(
+    doc = BaseDocTemplate(
         str(out_path),
         pagesize=letter,
-        leftMargin=MARGIN,
-        rightMargin=MARGIN,
-        topMargin=MARGIN,
-        bottomMargin=MARGIN,
         title=f"{resume.name} - Resume",
         author=resume.name,
     )
+    # Zero-padding frame: SimpleDocTemplate's default 6pt frame padding
+    # shifts paragraphs right of full-frame-width tables, misaligning the
+    # dates column with the section headers.
+    frame = Frame(
+        MARGIN,
+        MARGIN,
+        BODY_WIDTH,
+        letter[1] - 2 * MARGIN,
+        leftPadding=0,
+        rightPadding=0,
+        topPadding=0,
+        bottomPadding=0,
+    )
+    doc.addPageTemplates([PageTemplate(id="page", frames=[frame])])
     story: list = [
         Paragraph(md(resume.name), STYLES["name"]),
         Paragraph(md(resume.contact), STYLES["contact"]),
